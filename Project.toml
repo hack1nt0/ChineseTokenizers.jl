@@ -1,4 +1,4 @@
-name = "ChineseTokenizers"
+name = "ChmmTokenizers"
 uuid = "571c8cdc-1a7d-11e9-2889-95fb9781fed8"
 authors = ["dy <jealousing@gmail.com>"]
 version = "0.1.0"
@@ -7,5 +7,5 @@ version = "0.1.0"
 AhoCorasickAutomatons = "99525508-17e6-11e9-3f24-87416349f7b0"
 Markdown = "d6f4376e-aef5-505a-96c1-9c027394607a"
 Pkg = "44cfe95a-1eb2-52ea-b672-e2afdf69b78f"
-PyPlot = "d330b81b-6aea-500a-939a-2ce795aea3ee"
+ProgressMeter = "92933f4c-e287-5a05-a399-4b506db050ca"
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
