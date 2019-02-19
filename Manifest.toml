@@ -1,10 +1,8 @@
 [[AhoCorasickAutomatons]]
-deps = ["Markdown", "ProgressMeter", "Random", "Test"]
-git-tree-sha1 = "694316e994b521ecb500b04d9285ad3ea102b89a"
-repo-rev = "master"
-repo-url = "/Users/dy/AhoCorasickAutomatons.jl"
-uuid = "99525508-17e6-11e9-3f24-87416349f7b0"
-version = "0.1.0"
+deps = ["Markdown", "Pkg", "ProgressMeter", "Random", "Test"]
+git-tree-sha1 = "7951e99b7ba5d7383e3017d8cb5246da7ee66d06"
+uuid = "ada18822-018e-50a1-bfcc-5047cda99b0e"
+version = "0.3.0"
 
 [[Base64]]
 uuid = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"

@@ -1,17 +1,40 @@
-using Test, ChmmTokenizers, Pkg
+using Test, ChineseTokenizers, Pkg
 
 @testset "Result of split is meaningful and IO is correct." begin
-    tk = ChmmTokenizers.chmm()
-    # @show splits("这是樊胜美的妈吗", tokenizer; ntrial = 5)
-    # @show splits("这皇后不是白当的", tokenizer; ntrial = 5)
-    # @show splits("韩大相公演得好", tokenizer; ntrial = 5)
-    r1 = split("这是樊胜美的妈吗", tk)
-    @show r1
-    io = IOBuffer()
-    write(io, tk)
-    seek(io, 0)
-    tk2 = read(io, ChmmTokenizer)
+    tk = ChineseTokenizers.chmm()
+    display(tk)
+    segs = split("这是樊胜美的妈吗", tk)
+    println()
+    @show segs
+    open(joinpath(dirname(pathof(ChineseTokenizers)), "..", "chmm"), "w") do io
+        write(io, tk)
+    end
+    tk2 = open(joinpath(dirname(pathof(ChineseTokenizers)), "..", "chmm"), "r") do io
+        read(io, HiddenMarkovModel)
+    end
     @test tk == tk2
+end
+
+@testset "Added userdict should makes sense." begin
+    tk1 = HiddenMarkovModel()
+    xs  = "这是樊胜美的妈吗"
+    segs1 = split(xs, tk1)
+    @show segs1
+    tk2 = HiddenMarkovModel{Float32, Int32}(; userdict = joinpath(dirname(pathof(ChineseTokenizers)), "..", "userdict"))
+    segs2 = split(xs, tk2)
+    @show segs2
+    @test length(segs1) > length(segs2)
+end
+
+@testset "Added poswords may makes sense." begin
+    tk1 = HiddenMarkovModel()
+    xs  = "我的话你是不是不听了？"
+    segs1 = split(xs, tk1)
+    @show segs1
+    tk2 = HiddenMarkovModel{Float32, Int32}(; poswords = joinpath(dirname(pathof(ChineseTokenizers)), "..", "poswords"))
+    segs2 = split(xs, tk2)
+    @show segs2
+    @test length(segs1) >= length(segs2)
 end
 
 # @testset "Read and write is correct." begin
