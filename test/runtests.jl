@@ -1,5 +1,13 @@
 using Test, ChineseTokenizers, Pkg
 
+@testset "Display of LCCRF is correct." begin
+    matrix = Matrix{Any}(missing, 2, 2)
+    matrix[2, 2] = "*"
+    matrix[1, 1] = [1, 2]
+    model = ChineseTokenizers.LinearChainConditionalRandomField{Float64}(["A", "B"], [1.0, 2.0], matrix)
+    display(model)
+end
+
 @testset "Result of split is meaningful and IO is correct." begin
     tk = ChineseTokenizers.chmm()
     display(tk)
